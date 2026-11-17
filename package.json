@@ -6,7 +6,6 @@
     "dev": "pnpm --filter @askwell/web dev",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
-    "lint": "pnpm --filter @askwell/web lint",
     "test": "pnpm -r --if-present test"
   },
   "dependencies": {

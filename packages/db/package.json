@@ -8,10 +8,15 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "devDependencies": {
-    "typescript": "^5.7.2"
+    "@electric-sql/pglite": "0.5.16",
+    "@electric-sql/pglite-pgvector": "0.0.17",
+    "@types/node": "^22.20.5",
+    "typescript": "^5.7.2",
+    "vitest": "^5.1.0"
   }
 }

@@ -1,4 +1,14 @@
 {
+  "name": "askwell",
+  "private": true,
+  "packageManager": "pnpm@12.21.0",
+  "scripts": {
+    "dev": "pnpm --filter @askwell/web dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "lint": "pnpm --filter @askwell/web lint",
+    "test": "pnpm -r --if-present test"
+  },
   "dependencies": {
     "@therealjsmastery/jsm-hq": "^0.7.5"
   }

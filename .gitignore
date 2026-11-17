@@ -1,17 +1,31 @@
+# Environment — never commit secrets
+.env
+.env.local
+.env.*.local
+
+# Dependencies
 node_modules
+
+# Next.js build output
+.next
+out
+
+# TypeScript / build output
 dist
+dist-server
+*.tsbuildinfo
+
+# OS and editor
 .DS_Store
 *.local
 
 # HQ state when HQ is run on this repo itself
 .jsmhq/
 
-# Built server for the npm package
-dist-server
+# Package archives
 *.tgz
 
 # Local only (not part of the project)
 prototypes/
 docs/archive/
 docs/initial-idea.md
-*.tsbuildinfo

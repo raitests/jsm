@@ -1,0 +1,7 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+allowBuilds:
+  "@therealjsmastery/jsm-hq": true
+  sharp: true

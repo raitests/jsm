@@ -121,7 +121,7 @@ export function Sidebar() {
         ].join(" ")}
       >
         {/* Mobile header with close button inside the drawer */}
-        <div className="flex items-center justify-between px-4 pt-4 sm:hidden">
+        <div className="flex items-center justify-between pl-12 pr-4 pt-4 sm:hidden">
           <span className="text-base font-semibold text-fg">{APP_NAME}</span>
           <button
             className="flex h-7 w-7 items-center justify-center rounded-md text-fg-muted hover:text-fg"

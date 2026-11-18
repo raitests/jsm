@@ -181,6 +181,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@askwell/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@askwell/shared':
         specifier: workspace:*
         version: link:../../packages/shared

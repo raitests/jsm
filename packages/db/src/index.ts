@@ -1,2 +1,1 @@
-// Supabase generated types will go here (pnpm db:types)
-export {};
+export type { Database, Json, Tables, TablesInsert, TablesUpdate, Enums } from "../types";

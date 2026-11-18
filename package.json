@@ -7,7 +7,8 @@
     "build": "pnpm -r build",
     "lint": "pnpm --filter @askwell/web lint",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r --if-present test"
+    "test": "pnpm -r --if-present test",
+    "db:types": "supabase gen types typescript --project-id ywakpulonicpitdoynmy --schema public > packages/db/types.ts"
   },
   "dependencies": {
     "@therealjsmastery/jsm-hq": "^0.7.5"

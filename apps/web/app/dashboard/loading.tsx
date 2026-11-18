@@ -1,7 +1,9 @@
+import { LoadingState } from "../../components/ui/LoadingState";
+
 export default function Loading() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <p className="text-neutral-500">Loading…</p>
-    </main>
+    <div className="pt-20">
+      <LoadingState />
+    </div>
   );
 }

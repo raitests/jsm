@@ -1,18 +1,27 @@
 import { auth } from "@clerk/nextjs/server";
-import { SignOutButton } from "@clerk/nextjs";
+import type { Metadata } from "next";
 import { APP_NAME } from "@askwell/shared";
+import { EmptyState } from "../../components/ui/EmptyState";
+import { Button } from "../../components/ui/Button";
 
-export default async function DashboardPage() {
+export const metadata: Metadata = { title: `Projects · ${APP_NAME}` };
+
+export default async function ProjectsPage() {
   await auth.protect();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4">
-      <h1 className="text-3xl font-bold">{APP_NAME} Dashboard</h1>
-      <SignOutButton>
-        <button className="rounded bg-black px-4 py-2 text-white hover:bg-neutral-800">
-          Sign out
-        </button>
-      </SignOutButton>
-    </main>
+    <div>
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-xl font-semibold text-fg">Projects</h1>
+        <Button variant="primary" disabled title="Coming in Phase 2">
+          New project
+        </Button>
+      </div>
+
+      <EmptyState
+        title="No projects yet"
+        description="Create a project to get started. Project creation is coming in Phase 2."
+      />
+    </div>
   );
 }

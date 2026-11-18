@@ -2,7 +2,7 @@ import { APP_NAME } from "@askwell/shared";
 import type { Metadata } from "next";
 import { auth } from "@clerk/nextjs/server";
 import { ensureAccount } from "../../lib/accounts";
-import { ErrorState } from "../../components/ui/ErrorState";
+import { AccountInitError } from "./AccountInitError";
 import { Sidebar } from "./Sidebar";
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default async function DashboardLayout({
       <div className="sm:pl-56">
         <main className="min-h-screen pt-14 sm:pt-0">
           <div className="p-4 sm:p-6">
-            {initError ? <ErrorState message={initError} /> : children}
+            {initError ? <AccountInitError message={initError} /> : children}
           </div>
         </main>
       </div>

@@ -24,3 +24,4 @@ export const MAX_PASTED_TEXT_CHARS = 200_000;
 
 /** Longest uploaded file name, in characters. */
 export const MAX_FILE_NAME_CHARS = 255;
+// end of constants

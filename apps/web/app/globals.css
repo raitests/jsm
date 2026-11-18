@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ─── Design tokens ─────────────────────────────────────────────────────────
+   Dashboard uses the default (light) set.
+   Landing page sets data-theme="dark" on <html> to switch to the dark set.
+   Both sets use the same variable names so components need no changes.
+─────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Surfaces */
+  --color-bg: #f5f5f5;
+  --color-surface: rgba(255, 255, 255, 0.72);
+  --color-surface-raised: rgba(255, 255, 255, 0.92);
+
+  /* Borders */
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.14);
+
+  /* Text */
+  --color-fg: #0a0a0a;
+  --color-fg-muted: #737373;
+
+  /* Accent */
+  --color-accent: #0a0a0a;
+  --color-accent-fg: #ffffff;
+
+  /* Glass */
+  --blur-panel: 16px;
+  --shadow-panel: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-raised: 0 2px 8px rgba(0, 0, 0, 0.1), 0 16px 40px rgba(0, 0, 0, 0.06);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+/* Dark set — applied by the landing page layout via data-theme="dark" */
+[data-theme="dark"] {
+  --color-bg: #0a0a0a;
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-surface-raised: rgba(255, 255, 255, 0.09);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --color-fg: #fafafa;
+  --color-fg-muted: #a3a3a3;
+  --color-accent: #fafafa;
+  --color-accent-fg: #0a0a0a;
+  --shadow-panel: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.2);
+  --shadow-raised: 0 2px 8px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.3);
+}

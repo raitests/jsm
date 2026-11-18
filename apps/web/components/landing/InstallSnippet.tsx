@@ -27,7 +27,8 @@ export function InstallSnippet() {
           One script tag
         </h2>
         <p className="mb-10 text-center text-fg-muted">
-          Paste this snippet on any page. No framework, no build step required.
+          This is an example. After you sign up you&apos;ll get your real script
+          tag with your unique key — no framework, no build step.
         </p>
         <div className="relative rounded-2xl border border-border bg-surface p-6 backdrop-blur-panel">
           <pre className="overflow-x-auto font-mono text-sm leading-relaxed text-fg">

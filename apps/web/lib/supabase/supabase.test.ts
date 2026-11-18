@@ -18,12 +18,47 @@ function setEnv(vars: Record<string, string | undefined>) {
 }
 
 afterEach(() => {
-  // Restore env after each test
   for (const key of Object.keys(process.env)) {
     if (!(key in originalEnv)) delete process.env[key];
   }
   Object.assign(process.env, originalEnv);
   vi.resetModules();
+});
+
+// ---------------------------------------------------------------------------
+// URL validation helper
+// ---------------------------------------------------------------------------
+
+describe("requireSupabaseUrl", () => {
+  it("accepts https URLs", async () => {
+    const { requireSupabaseUrl } = await import("./validate");
+    expect(() => requireSupabaseUrl("https://example.supabase.co")).not.toThrow();
+  });
+
+  it("accepts http on localhost", async () => {
+    const { requireSupabaseUrl } = await import("./validate");
+    expect(() => requireSupabaseUrl("http://localhost:54321")).not.toThrow();
+  });
+
+  it("accepts http on 127.0.0.1", async () => {
+    const { requireSupabaseUrl } = await import("./validate");
+    expect(() => requireSupabaseUrl("http://127.0.0.1:54321")).not.toThrow();
+  });
+
+  it("rejects http on a non-loopback host", async () => {
+    const { requireSupabaseUrl } = await import("./validate");
+    expect(() => requireSupabaseUrl("http://example.supabase.co")).toThrow("must use https");
+  });
+
+  it("throws when undefined", async () => {
+    const { requireSupabaseUrl } = await import("./validate");
+    expect(() => requireSupabaseUrl(undefined)).toThrow("NEXT_PUBLIC_SUPABASE_URL is not set");
+  });
+
+  it("throws on an invalid URL", async () => {
+    const { requireSupabaseUrl } = await import("./validate");
+    expect(() => requireSupabaseUrl("not-a-url")).toThrow("not a valid URL");
+  });
 });
 
 // ---------------------------------------------------------------------------
@@ -49,6 +84,12 @@ describe("createOwnerClient", () => {
     setEnv({ NEXT_PUBLIC_SUPABASE_URL: undefined });
     const { createOwnerClient } = await import("./owner");
     await expect(createOwnerClient()).rejects.toThrow("NEXT_PUBLIC_SUPABASE_URL is not set");
+  });
+
+  it("rejects a plain http URL", async () => {
+    setEnv({ NEXT_PUBLIC_SUPABASE_URL: "http://example.supabase.co" });
+    const { createOwnerClient } = await import("./owner");
+    await expect(createOwnerClient()).rejects.toThrow("must use https");
   });
 
   it("throws clearly when NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY is missing", async () => {
@@ -83,6 +124,12 @@ describe("createServiceClient", () => {
     setEnv({ NEXT_PUBLIC_SUPABASE_URL: undefined });
     const { createServiceClient } = await import("./service");
     expect(() => createServiceClient()).toThrow("NEXT_PUBLIC_SUPABASE_URL is not set");
+  });
+
+  it("rejects a plain http URL", async () => {
+    setEnv({ NEXT_PUBLIC_SUPABASE_URL: "http://example.supabase.co" });
+    const { createServiceClient } = await import("./service");
+    expect(() => createServiceClient()).toThrow("must use https");
   });
 
   it("throws clearly when SUPABASE_SECRET_KEY is missing", async () => {

@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@askwell/db";
+import { requireSupabaseUrl } from "./validate";
 
 /**
  * Server-only Supabase client for owner actions (server components, API routes).
@@ -9,7 +10,7 @@ import type { Database } from "@askwell/db";
 export async function createOwnerClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-  if (!url) throw new Error("NEXT_PUBLIC_SUPABASE_URL is not set");
+  requireSupabaseUrl(url);
   if (!key) throw new Error("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY is not set");
 
   const { getToken } = await auth();

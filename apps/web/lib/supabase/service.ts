@@ -1,6 +1,7 @@
 import "server-only";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@askwell/db";
+import { requireSupabaseUrl } from "./validate";
 
 /**
  * Server-only Supabase client using the service role key.
@@ -10,7 +11,7 @@ import type { Database } from "@askwell/db";
 export function createServiceClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SECRET_KEY;
-  if (!url) throw new Error("NEXT_PUBLIC_SUPABASE_URL is not set");
+  requireSupabaseUrl(url);
   if (!key) throw new Error("SUPABASE_SECRET_KEY is not set");
 
   return createClient<Database>(url, key, {

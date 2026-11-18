@@ -1,3 +1,4 @@
+import { PLAN_LIMITS, PRO_PRICE_USD_MONTHLY } from "@askwell/shared";
 import { AnimateIn } from "./AnimateIn";
 
 const MOCK_MESSAGES = [
@@ -8,7 +9,7 @@ const MOCK_MESSAGES = [
   { role: "user", text: "What plans do you offer?" },
   {
     role: "bot",
-    text: "We have a Free plan (100 messages/month) and a Pro plan at $19/month with 2,000 messages and full widget customization.",
+    text: `We have a Free plan (${PLAN_LIMITS.free.messagesPerMonth} messages/month) and a Pro plan at $${PRO_PRICE_USD_MONTHLY}/month with ${PLAN_LIMITS.pro.messagesPerMonth.toLocaleString()} messages and full widget customization.`,
   },
 ];
 
